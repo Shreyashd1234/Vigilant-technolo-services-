@@ -98,7 +98,7 @@ function ProductDetail() {
                 {tab === "overview" && <p>The {p.name} is engineered for round-the-clock performance with premium components, intelligent analytics and a hardened weatherproof body. Designed and tested in India.</p>}
                 {tab === "specs" && (
                   <dl className="grid grid-cols-2 gap-x-8 gap-y-3 max-w-lg">
-                    {p.specs.map((s) => (
+                    {p.specs.map((s: { label: string; value: string }) => (
                       <div key={s.label} className="flex justify-between border-b border-border/60 py-2">
                         <dt className="text-muted-foreground">{s.label}</dt>
                         <dd className="text-foreground font-medium">{s.value}</dd>
