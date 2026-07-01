@@ -20,46 +20,68 @@ export const Route = createFileRoute("/")({
 function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 hero-bg pointer-events-none" />
-        <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[600px] w-[900px] rounded-full blur-3xl opacity-30 mesh-bg pointer-events-none" />
-        <div className="container-x relative pt-24 sm:pt-32 pb-20">
-          <div className="mx-auto max-w-4xl text-center animate-blur-in">
-            <Eyebrow>Pune · Established 2013</Eyebrow>
-            <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tight leading-[0.95]">
-              Secure every corner.
+      {/* HERO — cinematic full-bleed */}
+      <section className="relative -mt-16 min-h-[100svh] flex items-end overflow-hidden bg-foreground text-background">
+        <img
+          src={heroImage}
+          alt="Vigilant Technologies 24×7 security operations control room"
+          className="absolute inset-0 h-full w-full object-cover scale-105 animate-hero-zoom"
+          width={1920}
+          height={1280}
+          fetchPriority="high"
+        />
+        {/* gradient overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/30 to-transparent" />
+
+        <div className="container-x relative w-full pt-40 pb-16 sm:pb-24">
+          <div className="max-w-3xl animate-blur-in">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 backdrop-blur-md px-3.5 py-1.5 text-[11px] uppercase tracking-widest text-white/90">
+              <span className="relative flex h-1.5 w-1.5"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" /><span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-400" /></span>
+              Live · Pune · Est. 2013
+            </div>
+            <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[5.5rem] font-semibold tracking-tight leading-[0.95] text-white">
+              Intelligent security,
               <br />
-              <span className="text-gradient">Protect what matters most.</span>
+              <span className="bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent">engineered for the modern world.</span>
             </h1>
-            <p className="mt-8 mx-auto max-w-2xl text-lg sm:text-xl text-muted-foreground leading-relaxed">
-              Premium CCTV surveillance, smart security, biometric access, networking and enterprise-grade protection — engineered for homes, businesses and industries.
+            <p className="mt-7 max-w-xl text-lg text-white/70 leading-relaxed">
+              Premium CCTV, AI cameras, biometric access and enterprise networking — designed, installed and maintained by India's most trusted smart-security partner.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-              <Btn to="/products">Explore Products <ArrowRight className="h-4 w-4" /></Btn>
-              <Btn variant="outline" to="/contact">Book Free Site Survey</Btn>
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+              <Link to="/products" className="inline-flex items-center gap-2 rounded-full bg-white text-black px-6 py-3.5 text-sm font-medium btn-magnetic hover:bg-white/90 transition-colors">
+                Explore Products <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link to="/contact" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/5 backdrop-blur-md text-white px-6 py-3.5 text-sm font-medium hover:bg-white/10 transition-colors">
+                Book Free Site Survey
+              </Link>
+            </div>
+
+            {/* trust row */}
+            <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 text-white/70 text-[13px]">
+              <div className="flex items-center gap-2"><div className="flex gap-0.5">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" />)}</div><span className="font-medium text-white">4.9</span><span>· 1,200+ Google reviews</span></div>
+              <div className="hidden sm:block h-4 w-px bg-white/20" />
+              <div>12+ years · 4,200+ installations</div>
+              <div className="hidden md:block h-4 w-px bg-white/20" />
+              <div>24×7 NOC · 60+ certified engineers</div>
             </div>
           </div>
 
-          {/* Hero visual */}
-          <div className="mt-20 relative mx-auto max-w-5xl">
-            <div className="surface-card aspect-[16/9] mesh-bg relative overflow-hidden">
-              <div className="absolute inset-0 grid place-items-center">
-                <div className="text-center">
-                  <div className="mx-auto h-20 w-20 rounded-3xl bg-foreground/5 backdrop-blur border border-border grid place-items-center animate-float">
-                    <ShieldCheck className="h-8 w-8 text-foreground/70" />
-                  </div>
-                  <p className="mt-6 text-sm text-muted-foreground">Live control room · 24×7 NOC monitoring</p>
-                </div>
+          {/* floating feature cards */}
+          <div className="mt-14 grid grid-cols-2 lg:grid-cols-5 gap-3 max-w-5xl">
+            {[
+              { icon: Eye, t: "AI Detection", s: "Smart motion zones" },
+              { icon: Cloud, t: "Cloud Backup", s: "30-day retention" },
+              { icon: Smartphone, t: "Mobile Alerts", s: "iOS & Android" },
+              { icon: ShieldCheck, t: "24×7 Monitoring", s: "NOC watch" },
+              { icon: Sparkles, t: "Remote Access", s: "One app, any site" },
+            ].map((c) => (
+              <div key={c.t} className="rounded-2xl border border-white/10 bg-white/[0.06] backdrop-blur-xl p-4 hover:bg-white/[0.1] transition-colors">
+                <c.icon className="h-4 w-4 text-white" strokeWidth={1.5} />
+                <div className="mt-6 text-[13px] font-semibold text-white">{c.t}</div>
+                <div className="text-[12px] text-white/60">{c.s}</div>
               </div>
-              <div className="absolute bottom-6 left-6 right-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {["AI Detection", "4K Recording", "Cloud Backup", "Mobile Alerts"].map((t) => (
-                  <div key={t} className="rounded-xl bg-background/70 backdrop-blur border border-border/60 px-4 py-3 text-xs font-medium text-left">
-                    <Sparkles className="h-3 w-3 inline mr-1.5 text-brand" /> {t}
-                  </div>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -75,6 +97,28 @@ function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* TRUST BADGES */}
+      <section className="container-x py-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {[
+            { icon: Star, t: "Google 4.9★" },
+            { icon: ShieldCheck, t: "2-Yr Warranty" },
+            { icon: Award, t: "Genuine Products" },
+            { icon: Wrench, t: "Pro Installation" },
+            { icon: Users, t: "Certified Engineers" },
+            { icon: Cloud, t: "24×7 Support" },
+          ].map((b) => (
+            <div key={b.t} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3.5">
+              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-foreground text-background">
+                <b.icon className="h-4 w-4" strokeWidth={1.75} />
+              </div>
+              <span className="text-[13px] font-medium truncate">{b.t}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
 
       {/* SOLUTIONS */}
       <Section>
