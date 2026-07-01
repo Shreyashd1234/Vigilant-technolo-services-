@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, Sparkles, Star } from "lucide-react";
+import { ArrowRight, Award, Cloud, Eye, ShieldCheck, Smartphone, Sparkles, Star, Users, Wrench } from "lucide-react";
 import { Btn, Eyebrow, Section, SectionHeading, ArrowLink } from "@/components/site/Primitives";
 import { ProductCard } from "@/components/site/ProductCard";
 import { BRAND, INDUSTRIES, METRICS, PROCESS, PRODUCTS, SOLUTIONS, TESTIMONIALS } from "@/lib/site-data";
+import heroImage from "@/assets/hero-control-room.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
