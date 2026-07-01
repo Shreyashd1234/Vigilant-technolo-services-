@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, Search, ShoppingBag, User, X, ShieldCheck } from "lucide-react";
+import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { NAV, BRAND } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/vigilant-logo.png.asset.json";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
