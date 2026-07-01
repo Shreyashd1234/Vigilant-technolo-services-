@@ -55,10 +55,10 @@ export function AdminShell() {
     <div className="min-h-svh flex bg-background text-foreground selection:bg-brand/20">
       {/* Sidebar */}
       <aside className="hidden lg:flex w-64 shrink-0 flex-col border-r border-border/40 bg-surface sticky top-0 h-svh">
-        <div className="flex items-center gap-3 px-6 h-[72px] border-b border-border/40">
+        <Link to="/" className="flex items-center gap-3 px-6 h-[72px] border-b border-border/40 hover:opacity-80 transition-opacity">
           <img src={logo} alt="Vigilant" className="h-7 w-auto object-contain" />
           <div className="text-[14px] font-semibold tracking-tight">Vigilant<span className="text-muted-foreground font-medium"> Admin</span></div>
-        </div>
+        </Link>
         <nav className="flex-1 overflow-y-auto px-4 py-6 space-y-8">
           {NAV_GROUPS.map((g) => (
             <div key={g.label}>
