@@ -14,7 +14,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
-import logoAsset from "@/assets/vigilant-logo.png.asset.json";
+import { FloatingCallButton } from "@/components/site/CTAs";
+import logoUrl from "@/assets/Vigilant_Techno_Services_logo.png";
 
 function NotFoundComponent() {
   return (
@@ -76,7 +77,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: logoAsset.url },
+      { rel: "icon", type: "image/png", href: logoUrl },
     ],
   }),
   shellComponent: RootShell,
@@ -107,6 +108,7 @@ function RootComponent() {
       <main className={isAdmin ? "" : "pt-16"}>
         <Outlet />
       </main>
+      {!isAdmin && <FloatingCallButton />}
       {!isAdmin && <Footer />}
     </QueryClientProvider>
   );

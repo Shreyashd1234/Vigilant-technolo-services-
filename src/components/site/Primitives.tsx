@@ -43,11 +43,11 @@ type BtnProps = {
 };
 
 export function Btn({ to, href, variant = "primary", children, className, onClick, type }: BtnProps) {
-  const base = "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all btn-magnetic";
+  const base = "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all btn-magnetic outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
   const styles = {
-    primary: "bg-foreground text-background hover:bg-foreground/90",
-    outline: "border border-border bg-surface-elevated text-foreground hover:border-foreground/40",
-    ghost: "text-foreground hover:bg-accent",
+    primary: "bg-foreground text-background hover:bg-foreground/90 shadow-sm",
+    outline: "border border-border/70 bg-surface-elevated text-foreground hover:bg-accent/40 shadow-sm",
+    ghost: "text-foreground hover:bg-accent/60",
   }[variant];
   const cls = cn(base, styles, className);
   if (to) return <Link to={to} className={cls}>{children}</Link>;

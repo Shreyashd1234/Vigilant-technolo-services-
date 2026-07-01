@@ -1,105 +1,104 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
-import { NAV, BRAND } from "@/lib/site-data";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import { BRAND, NAV } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
-import logoAsset from "@/assets/vigilant-logo.png.asset.json";
+import logo from "@/assets/Vigilant_Techno_Services_logo.png";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const pathname = useRouterState({ select: (s) => s.location.pathname });
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const routerState = useRouterState();
+  
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    // Close mobile menu on route change
+    setMobileMenuOpen(false);
+  }, [routerState.location.pathname]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/60"
-          : "bg-transparent"
-      )}
-    >
-      <div className="container-x flex h-16 items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-2.5 group">
-          <img
-            src={logoAsset.url}
-            alt={BRAND.name}
-            className="h-9 w-auto object-contain"
-            width={36}
-            height={36}
-          />
-          <span className="hidden sm:inline font-display text-[15px] font-semibold tracking-tight">
-            {BRAND.short}<span className="text-muted-foreground font-normal"> Technologies</span>
-          </span>
-        </Link>
+    <>
+      <nav
+        className={cn(
+          "fixed top-0 inset-x-0 z-50 transition-all duration-500",
+          scrolled 
+            ? "py-3 bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
+            : "py-6 bg-transparent"
+        )}
+      >
+        <div className="container-x flex items-center justify-between">
+          
+          {/* Brand */}
+          <Link to="/" className="flex items-center gap-3 relative z-50">
+            <img src={logo} alt={BRAND.name} className="h-8 w-auto" />
+            <span className="font-display font-semibold text-lg tracking-tight hidden sm:block">{BRAND.name}</span>
+          </Link>
 
-        <nav className="hidden lg:flex items-center gap-7">
-          {NAV.map((item) => {
-            const active = pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to));
-            return (
+          {/* Desktop Links (No Dropdowns) */}
+          <div className="hidden lg:flex items-center gap-10">
+            {NAV.map((item) => (
               <Link
-                key={item.to}
+                key={item.label}
                 to={item.to}
-                className={cn(
-                  "link-underline text-[13.5px] font-medium transition-colors",
-                  active ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                )}
+                className="text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+                activeProps={{ className: "!text-foreground font-semibold" }}
               >
                 {item.label}
               </Link>
-            );
-          })}
-        </nav>
-
-        <div className="flex items-center gap-1">
-          <button className="hidden sm:grid h-9 w-9 place-items-center rounded-full hover:bg-accent transition-colors" aria-label="Search">
-            <Search className="h-4 w-4" />
-          </button>
-          <Link to="/account" className="hidden sm:grid h-9 w-9 place-items-center rounded-full hover:bg-accent transition-colors" aria-label="Account">
-            <User className="h-4 w-4" />
-          </Link>
-          <Link to="/cart" className="grid h-9 w-9 place-items-center rounded-full hover:bg-accent transition-colors" aria-label="Cart">
-            <ShoppingBag className="h-4 w-4" />
-          </Link>
-          <Link
-            to="/contact"
-            className="hidden md:inline-flex items-center rounded-full bg-foreground text-background px-4 py-2 text-[13px] font-medium btn-magnetic ml-2"
-          >
-            Book a Survey
-          </Link>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="lg:hidden grid h-9 w-9 place-items-center rounded-full hover:bg-accent"
-            aria-label="Menu"
-          >
-            {open ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-          </button>
-        </div>
-      </div>
-
-      {open && (
-        <div className="lg:hidden border-t border-border/60 bg-background/95 backdrop-blur-xl animate-fade-up">
-          <div className="container-x py-6 flex flex-col gap-1">
-            {NAV.map((item) => (
-              <Link key={item.to} to={item.to} className="py-3 text-base font-medium border-b border-border/40 last:border-0">
-                {item.label}
-              </Link>
             ))}
-            <Link to="/contact" className="mt-4 inline-flex items-center justify-center rounded-full bg-foreground text-background px-4 py-3 text-sm font-medium">
-              Book a Free Site Survey
-            </Link>
+          </div>
+
+          {/* Right Action & Mobile Toggle */}
+          <div className="flex items-center gap-4 relative z-50">
+            <a 
+              href={`tel:${BRAND.phone}`}
+              className="hidden sm:flex h-11 px-7 items-center justify-center rounded-full bg-foreground text-background text-[15px] font-semibold hover:bg-foreground/90 transition-colors"
+            >
+              Call Expert
+            </a>
+            <button 
+              className="lg:hidden h-11 w-11 flex items-center justify-center rounded-full bg-surface border border-border/50"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
-      )}
-    </header>
+      </nav>
+
+      {/* Mobile Menu */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-40 bg-background/95 backdrop-blur-2xl transition-all duration-500 lg:hidden flex flex-col justify-center px-8",
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="flex flex-col gap-6 text-center">
+           {NAV.map(item => (
+              <Link 
+                 key={item.label}
+                 to={item.to}
+                 className="text-3xl font-display font-semibold text-foreground/80 hover:text-brand transition-colors"
+                 activeProps={{ className: "!text-brand" }}
+              >
+                 {item.label}
+              </Link>
+           ))}
+           <a 
+              href={`tel:${BRAND.phone}`}
+              className="mt-8 mx-auto h-14 px-8 flex items-center justify-center rounded-full bg-foreground text-background text-lg font-semibold w-full max-w-xs"
+           >
+              Call {BRAND.phone}
+           </a>
+        </div>
+      </div>
+    </>
   );
 }

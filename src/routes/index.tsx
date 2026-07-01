@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Award, Cloud, Eye, ShieldCheck, Smartphone, Sparkles, Star, Users, Wrench } from "lucide-react";
+import { ArrowRight, Award, Cloud, Eye, ShieldCheck, Smartphone, Sparkles, Star, Users, Wrench, User } from "lucide-react";
 import { Btn, Section, SectionHeading, ArrowLink } from "@/components/site/Primitives";
 import { ProductCard } from "@/components/site/ProductCard";
 import { BRAND, INDUSTRIES, METRICS, PROCESS, PRODUCTS, SOLUTIONS, TESTIMONIALS } from "@/lib/site-data";
+import { cn } from "@/lib/utils";
 import heroImage from "@/assets/hero-control-room.jpg";
 
 export const Route = createFileRoute("/")({
@@ -108,8 +109,8 @@ function HomePage() {
             { icon: Wrench, t: "Pro Installation" },
             { icon: Users, t: "Certified Engineers" },
             { icon: Cloud, t: "24×7 Support" },
-          ].map((b) => (
-            <div key={b.t} className="flex items-center gap-3 rounded-2xl border border-border bg-surface px-4 py-3.5">
+          ].map((b, i) => (
+            <div key={b.t} className={cn("flex items-center gap-3 rounded-2xl border border-border/70 bg-surface-elevated px-4 py-3.5 hover:border-border hover:shadow-sm transition-all animate-fade-up", `delay-${(i % 6) * 100}`)}>
               <div className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-foreground text-background">
                 <b.icon className="h-4 w-4" strokeWidth={1.75} />
               </div>
@@ -128,10 +129,14 @@ function HomePage() {
         </div>
         <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {SOLUTIONS.map((s) => (
-            <Link key={s.slug} to="/solutions" className="surface-card surface-card-hover group p-7">
-              <s.icon className="h-6 w-6 text-foreground" strokeWidth={1.5} />
-              <h3 className="mt-8 text-[15px] font-semibold">{s.name}</h3>
-              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+            <Link key={s.slug} to="/solutions" className="group relative overflow-hidden rounded-3xl p-7 border border-border/50 bg-background hover:border-border transition-colors block aspect-[4/5] sm:aspect-auto sm:h-[400px]">
+              <img src={s.image} alt={s.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent transition-opacity group-hover:opacity-90" />
+              <div className="absolute inset-x-0 bottom-0 p-7 flex flex-col justify-end h-full">
+                <s.icon className="h-6 w-6 text-white mb-4" strokeWidth={1.5} />
+                <h3 className="text-xl font-semibold text-white tracking-tight">{s.name}</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">{s.desc}</p>
+              </div>
             </Link>
           ))}
         </div>
@@ -146,12 +151,16 @@ function HomePage() {
               Trusted across India's most demanding environments.
             </h2>
           </div>
-          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-background/10 border border-background/10 rounded-3xl overflow-hidden">
+          <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-px bg-background/20 border border-background/20 rounded-3xl overflow-hidden">
             {INDUSTRIES.map((i) => (
-              <div key={i.name} className="bg-foreground p-8 hover:bg-background/5 transition-colors">
-                <i.icon className="h-5 w-5 text-background/80" strokeWidth={1.5} />
-                <div className="mt-10 text-sm font-medium">{i.name}</div>
-              </div>
+              <Link key={i.slug} to="/industries/$slug" params={{ slug: i.slug }} className="group relative aspect-square sm:aspect-[3/4] overflow-hidden bg-foreground">
+                <img src={i.image} alt={i.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-[1200ms] ease-out group-hover:scale-105 group-hover:opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
+                  <i.icon className="h-6 w-6 text-white mb-4" strokeWidth={1.5} />
+                  <div className="text-lg font-medium text-white">{i.name}</div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -188,13 +197,25 @@ function HomePage() {
       <Section>
         <SectionHeading eyebrow="Testimonials" title={<>Loved by India's most exacting facility teams.</>} />
         <div className="mt-16 grid gap-6 lg:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
-            <figure key={t.name} className="surface-card p-8">
-              <div className="flex gap-1">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-3.5 w-3.5 fill-foreground text-foreground" />)}</div>
-              <blockquote className="mt-6 text-[17px] leading-relaxed font-medium tracking-tight">"{t.quote}"</blockquote>
-              <figcaption className="mt-8 text-sm">
-                <div className="font-semibold">{t.name}</div>
-                <div className="text-muted-foreground">{t.role}</div>
+          {TESTIMONIALS.map((t, i) => (
+            <figure key={t.name} className={cn("surface-card p-8 flex flex-col justify-between animate-fade-up relative overflow-hidden", `delay-${(i % 3) * 100}`)}>
+              <div className="absolute inset-0 bg-gradient-to-br from-brand/5 to-transparent pointer-events-none" />
+              <div className="relative z-10">
+                <div className="flex gap-1">{Array.from({ length: 5 }).map((_, j) => <Star key={j} className="h-3.5 w-3.5 fill-brand text-brand" />)}</div>
+                <blockquote className="mt-6 text-[17px] leading-relaxed font-medium tracking-tight text-foreground/90">"{t.quote}"</blockquote>
+              </div>
+              <figcaption className="mt-8 flex items-center gap-4 border-t border-border/60 pt-6 relative z-10">
+                {t.avatar ? (
+                   <img src={t.avatar} alt={t.name} className="h-11 w-11 rounded-full object-cover ring-2 ring-background shadow-sm bg-surface" loading="lazy" />
+                ) : (
+                   <div className="h-11 w-11 rounded-full ring-2 ring-background shadow-sm bg-surface flex items-center justify-center text-muted-foreground">
+                      <User className="h-5 w-5" />
+                   </div>
+                )}
+                <div className="text-sm">
+                  <div className="font-semibold text-foreground/90">{t.name}</div>
+                  <div className="text-muted-foreground">{t.role}</div>
+                </div>
               </figcaption>
             </figure>
           ))}
@@ -203,8 +224,10 @@ function HomePage() {
 
       {/* CTA */}
       <Section>
-        <div className="surface-card overflow-hidden">
-          <div className="relative mesh-bg p-12 sm:p-16 lg:p-24">
+        <div className="surface-card overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Modern office" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-surface/50" />
+          <div className="relative p-12 sm:p-16 lg:p-24">
             <div className="max-w-2xl">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.05]">
                 Book your free site survey today.

@@ -10,8 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SolutionsRouteImport } from './routes/solutions'
+import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as ProductsRouteImport } from './routes/products'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as CartRouteImport } from './routes/cart'
@@ -21,9 +25,15 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
+import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as IndustriesSlugRouteImport } from './routes/industries.$slug'
 import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
 import { Route as AdminSectionsRouteImport } from './routes/admin.sections'
 import { Route as AdminRolesRouteImport } from './routes/admin.roles'
@@ -45,14 +55,34 @@ const SolutionsRoute = SolutionsRouteImport.update({
   path: '/solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -100,20 +130,50 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolutionsIndexRoute = SolutionsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SolutionsRoute,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsRoute,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
-  id: '/products/',
-  path: '/products/',
-  getParentRoute: () => rootRouteImport,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IndustriesRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const SolutionsSlugRoute = SolutionsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => SolutionsRoute,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProjectsRoute,
+} as any)
 const ProductsSlugRoute = ProductsSlugRouteImport.update({
-  id: '/products/$slug',
-  path: '/products/$slug',
-  getParentRoute: () => rootRouteImport,
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ProductsRoute,
+} as any)
+const IndustriesSlugRoute = IndustriesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => IndustriesRoute,
 } as any)
 const AdminSettingsRoute = AdminSettingsRouteImport.update({
   id: '/settings',
@@ -201,9 +261,13 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
-  '/projects': typeof ProjectsRoute
-  '/solutions': typeof SolutionsRoute
+  '/products': typeof ProductsRouteWithChildren
+  '/projects': typeof ProjectsRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/solutions': typeof SolutionsRouteWithChildren
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -219,9 +283,15 @@ export interface FileRoutesByFullPath {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/sections': typeof AdminSectionsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -232,9 +302,9 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
   '/login': typeof LoginRoute
-  '/projects': typeof ProjectsRoute
-  '/solutions': typeof SolutionsRoute
+  '/reviews': typeof ReviewsRoute
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -250,9 +320,15 @@ export interface FileRoutesByTo {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/sections': typeof AdminSectionsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/industries': typeof IndustriesIndexRoute
   '/products': typeof ProductsIndexRoute
+  '/projects': typeof ProjectsIndexRoute
+  '/solutions': typeof SolutionsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -265,9 +341,13 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/gallery': typeof GalleryRoute
+  '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
-  '/projects': typeof ProjectsRoute
-  '/solutions': typeof SolutionsRoute
+  '/products': typeof ProductsRouteWithChildren
+  '/projects': typeof ProjectsRouteWithChildren
+  '/reviews': typeof ReviewsRoute
+  '/solutions': typeof SolutionsRouteWithChildren
   '/admin/blog': typeof AdminBlogRoute
   '/admin/categories': typeof AdminCategoriesRoute
   '/admin/coupons': typeof AdminCouponsRoute
@@ -283,9 +363,15 @@ export interface FileRoutesById {
   '/admin/roles': typeof AdminRolesRoute
   '/admin/sections': typeof AdminSectionsRoute
   '/admin/settings': typeof AdminSettingsRoute
+  '/industries/$slug': typeof IndustriesSlugRoute
   '/products/$slug': typeof ProductsSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/industries/': typeof IndustriesIndexRoute
   '/products/': typeof ProductsIndexRoute
+  '/projects/': typeof ProjectsIndexRoute
+  '/solutions/': typeof SolutionsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -299,8 +385,12 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/gallery'
+    | '/industries'
     | '/login'
+    | '/products'
     | '/projects'
+    | '/reviews'
     | '/solutions'
     | '/admin/blog'
     | '/admin/categories'
@@ -317,9 +407,15 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/sections'
     | '/admin/settings'
+    | '/industries/$slug'
     | '/products/$slug'
+    | '/projects/$slug'
+    | '/solutions/$slug'
     | '/admin/'
+    | '/industries/'
     | '/products/'
+    | '/projects/'
+    | '/solutions/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -330,9 +426,9 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/gallery'
     | '/login'
-    | '/projects'
-    | '/solutions'
+    | '/reviews'
     | '/admin/blog'
     | '/admin/categories'
     | '/admin/coupons'
@@ -348,9 +444,15 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/sections'
     | '/admin/settings'
+    | '/industries/$slug'
     | '/products/$slug'
+    | '/projects/$slug'
+    | '/solutions/$slug'
     | '/admin'
+    | '/industries'
     | '/products'
+    | '/projects'
+    | '/solutions'
   id:
     | '__root__'
     | '/'
@@ -362,8 +464,12 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/gallery'
+    | '/industries'
     | '/login'
+    | '/products'
     | '/projects'
+    | '/reviews'
     | '/solutions'
     | '/admin/blog'
     | '/admin/categories'
@@ -380,9 +486,15 @@ export interface FileRouteTypes {
     | '/admin/roles'
     | '/admin/sections'
     | '/admin/settings'
+    | '/industries/$slug'
     | '/products/$slug'
+    | '/projects/$slug'
+    | '/solutions/$slug'
     | '/admin/'
+    | '/industries/'
     | '/products/'
+    | '/projects/'
+    | '/solutions/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -395,11 +507,13 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  GalleryRoute: typeof GalleryRoute
+  IndustriesRoute: typeof IndustriesRouteWithChildren
   LoginRoute: typeof LoginRoute
-  ProjectsRoute: typeof ProjectsRoute
-  SolutionsRoute: typeof SolutionsRoute
-  ProductsSlugRoute: typeof ProductsSlugRoute
-  ProductsIndexRoute: typeof ProductsIndexRoute
+  ProductsRoute: typeof ProductsRouteWithChildren
+  ProjectsRoute: typeof ProjectsRouteWithChildren
+  ReviewsRoute: typeof ReviewsRoute
+  SolutionsRoute: typeof SolutionsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -411,6 +525,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects': {
       id: '/projects'
       path: '/projects'
@@ -418,11 +539,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -488,12 +630,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solutions/': {
+      id: '/solutions/'
+      path: '/'
+      fullPath: '/solutions/'
+      preLoaderRoute: typeof SolutionsIndexRouteImport
+      parentRoute: typeof SolutionsRoute
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/products/': {
       id: '/products/'
-      path: '/products'
+      path: '/'
       fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/industries/': {
+      id: '/industries/'
+      path: '/'
+      fullPath: '/industries/'
+      preLoaderRoute: typeof IndustriesIndexRouteImport
+      parentRoute: typeof IndustriesRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -502,12 +665,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/solutions/$slug': {
+      id: '/solutions/$slug'
+      path: '/$slug'
+      fullPath: '/solutions/$slug'
+      preLoaderRoute: typeof SolutionsSlugRouteImport
+      parentRoute: typeof SolutionsRoute
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof ProjectsRoute
+    }
     '/products/$slug': {
       id: '/products/$slug'
-      path: '/products/$slug'
+      path: '/$slug'
       fullPath: '/products/$slug'
       preLoaderRoute: typeof ProductsSlugRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof ProductsRoute
+    }
+    '/industries/$slug': {
+      id: '/industries/$slug'
+      path: '/$slug'
+      fullPath: '/industries/$slug'
+      preLoaderRoute: typeof IndustriesSlugRouteImport
+      parentRoute: typeof IndustriesRoute
     }
     '/admin/settings': {
       id: '/admin/settings'
@@ -657,6 +841,62 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
+interface IndustriesRouteChildren {
+  IndustriesSlugRoute: typeof IndustriesSlugRoute
+  IndustriesIndexRoute: typeof IndustriesIndexRoute
+}
+
+const IndustriesRouteChildren: IndustriesRouteChildren = {
+  IndustriesSlugRoute: IndustriesSlugRoute,
+  IndustriesIndexRoute: IndustriesIndexRoute,
+}
+
+const IndustriesRouteWithChildren = IndustriesRoute._addFileChildren(
+  IndustriesRouteChildren,
+)
+
+interface ProductsRouteChildren {
+  ProductsSlugRoute: typeof ProductsSlugRoute
+  ProductsIndexRoute: typeof ProductsIndexRoute
+}
+
+const ProductsRouteChildren: ProductsRouteChildren = {
+  ProductsSlugRoute: ProductsSlugRoute,
+  ProductsIndexRoute: ProductsIndexRoute,
+}
+
+const ProductsRouteWithChildren = ProductsRoute._addFileChildren(
+  ProductsRouteChildren,
+)
+
+interface ProjectsRouteChildren {
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
+}
+
+const ProjectsRouteChildren: ProjectsRouteChildren = {
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
+}
+
+const ProjectsRouteWithChildren = ProjectsRoute._addFileChildren(
+  ProjectsRouteChildren,
+)
+
+interface SolutionsRouteChildren {
+  SolutionsSlugRoute: typeof SolutionsSlugRoute
+  SolutionsIndexRoute: typeof SolutionsIndexRoute
+}
+
+const SolutionsRouteChildren: SolutionsRouteChildren = {
+  SolutionsSlugRoute: SolutionsSlugRoute,
+  SolutionsIndexRoute: SolutionsIndexRoute,
+}
+
+const SolutionsRouteWithChildren = SolutionsRoute._addFileChildren(
+  SolutionsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -667,12 +907,24 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  GalleryRoute: GalleryRoute,
+  IndustriesRoute: IndustriesRouteWithChildren,
   LoginRoute: LoginRoute,
-  ProjectsRoute: ProjectsRoute,
-  SolutionsRoute: SolutionsRoute,
-  ProductsSlugRoute: ProductsSlugRoute,
-  ProductsIndexRoute: ProductsIndexRoute,
+  ProductsRoute: ProductsRouteWithChildren,
+  ProjectsRoute: ProjectsRouteWithChildren,
+  ReviewsRoute: ReviewsRoute,
+  SolutionsRoute: SolutionsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
