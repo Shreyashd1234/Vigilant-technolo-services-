@@ -1,8 +1,9 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, Search, ShoppingBag, User, X, ShieldCheck } from "lucide-react";
+import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { NAV, BRAND } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/vigilant-logo.png.asset.json";
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,12 +29,16 @@ export function Nav() {
       )}
     >
       <div className="container-x flex h-16 items-center justify-between gap-6">
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="grid h-8 w-8 place-items-center rounded-lg bg-foreground text-background">
-            <ShieldCheck className="h-4 w-4" />
-          </div>
-          <span className="font-display text-[15px] font-semibold tracking-tight">
-            {BRAND.short}<span className="text-muted-foreground font-normal">.tech</span>
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <img
+            src={logoAsset.url}
+            alt={BRAND.name}
+            className="h-9 w-auto object-contain"
+            width={36}
+            height={36}
+          />
+          <span className="hidden sm:inline font-display text-[15px] font-semibold tracking-tight">
+            {BRAND.short}<span className="text-muted-foreground font-normal"> Technologies</span>
           </span>
         </Link>
 

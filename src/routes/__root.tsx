@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -13,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import logoAsset from "@/assets/vigilant-logo.png.asset.json";
 
 function NotFoundComponent() {
   return (
@@ -71,10 +73,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "Vigilant Technologies — Premium Smart Security, Pune" },
       { name: "twitter:description", content: "Premium CCTV, IP cameras, biometric access, networking and AMC for homes, offices, industries and societies across India." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b4f9b0e1-9ea2-489a-a34c-8d1cc5b6ce5f/id-preview-0cc34fb1--6e35af37-3840-4740-a71d-869f11fb890e.lovable.app-1782802428744.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b4f9b0e1-9ea2-489a-a34c-8d1cc5b6ce5f/id-preview-0cc34fb1--6e35af37-3840-4740-a71d-869f11fb890e.lovable.app-1782802428744.png" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: logoAsset.url },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -96,13 +99,15 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname.startsWith("/admin");
   return (
     <QueryClientProvider client={queryClient}>
-      <Nav />
-      <main className="pt-16">
+      {!isAdmin && <Nav />}
+      <main className={isAdmin ? "" : "pt-16"}>
         <Outlet />
       </main>
-      <Footer />
+      {!isAdmin && <Footer />}
     </QueryClientProvider>
   );
 }

@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
 import { BRAND, NAV } from "@/lib/site-data";
+import logoAsset from "@/assets/vigilant-logo.png.asset.json";
 
 export function Footer() {
   return (
@@ -8,10 +8,8 @@ export function Footer() {
       <div className="container-x py-20">
         <div className="grid gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="grid h-9 w-9 place-items-center rounded-lg bg-foreground text-background">
-                <ShieldCheck className="h-4 w-4" />
-              </div>
+            <div className="flex items-center gap-2.5">
+              <img src={logoAsset.url} alt={BRAND.name} className="h-10 w-auto object-contain" width={40} height={40} loading="lazy" />
               <span className="font-display text-base font-semibold">{BRAND.name}</span>
             </div>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground leading-relaxed">

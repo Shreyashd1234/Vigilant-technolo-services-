@@ -204,7 +204,12 @@
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
+@keyframes hero-zoom {
+  from { transform: scale(1.15); }
+  to { transform: scale(1.05); }
+}
 
 @utility animate-fade-up { animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @utility animate-blur-in { animation: blur-in 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-hero-zoom { animation: hero-zoom 12s cubic-bezier(0.22, 1, 0.36, 1) both; }
