@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
 import { BRAND, NAV } from "@/lib/site-data";
+import logoAsset from "@/assets/vigilant-logo.png.asset.json";
 
 export function Footer() {
   return (
