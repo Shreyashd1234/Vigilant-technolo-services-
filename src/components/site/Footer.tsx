@@ -14,7 +14,7 @@ export function Footer() {
               <img src={logoUrl} alt={BRAND.name} className="h-12 w-auto object-contain" loading="lazy" />
             </div>
             <p className="mt-5 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              {BRAND.tagline} India's premium smart-security partner — installations, integration & lifetime AMC.
+              {BRAND.tagline} India's premium smart-security partner — installations, integration & lifetime support.
             </p>
             <p className="mt-6 text-xs text-muted-foreground">{BRAND.address}</p>
             <div className="mt-8 flex flex-wrap items-center gap-3">

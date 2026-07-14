@@ -29,7 +29,7 @@ export const BRAND = {
   city: "Pune",
   phone: "08087279615",
   email: "hello@vigilant.tech",
-  address: "Vigilant House, Pune",
+  address: "HN 48/1, Pitrukrupa Building, near Datta Mandir, Satara Road, Dhankawadi, Pune - 411043",
   rating: "4.9★",
   established: "2013",
 };
@@ -238,37 +238,9 @@ export const SOLUTIONS: Solution[] = [
       { q: "Do you certify the network runs?", a: "Yes, all network points are tested and certified for Gigabit throughput before handover." },
       { q: "Do you provide managed switches?", a: "We exclusively deploy L2/L3 managed switches for commercial projects to ensure optimal traffic routing and security VLANs." }
     ],
-    relatedSolutions: ["ip-cameras", "amc"]
+    relatedSolutions: ["ip-cameras"]
   },
-  {
-    slug: "amc",
-    icon: Wrench,
-    name: "AMC & Support",
-    short: "Proactive SLAs.",
-    desc: "Proactive maintenance with guaranteed response SLAs.",
-    image: iWar,
-    why: "Prevent downtime before it happens. Security systems operate 24x7x365 and degrade over time if neglected. Our Annual Maintenance Contracts ensure your infrastructure remains flawless year-round.",
-    where: "Deployed for multi-branch retail chains, massive housing societies, government facilities, and corporate networks.",
-    how: "We assign dedicated account managers and deploy field engineers on a quarterly schedule for preventive checks, backed by a 24x7 NOC for emergency remote support.",
-    maintenance: "Comprehensive. Covers lens cleaning, voltage checks, storage formatting, software patching, and re-cabling.",
-    bestPractices: ["Always keep a 5% cold-spare inventory", "Schedule preventive maintenance during off-hours", "Maintain a detailed digital asset log"],
-    technicalHighlights: [
-      { label: "Response", value: "As low as 1 hour" },
-      { label: "Visits", value: "Monthly or Quarterly" },
-      { label: "Coverage", value: "Comprehensive or Non-Comprehensive" },
-    ],
-    benefits: ["Priority response SLAs", "Quarterly preventive maintenance", "Free firmware updates", "Discounted spare parts"],
-    applications: ["Multi-branch Retail", "Housing Societies", "Government Facilities", "Corporate Chains"],
-    gallery: [
-      iWar,
-      hNet
-    ],
-    faqs: [
-      { q: "What is the standard response time?", a: "Our business AMC plans include a 12 to 24-hour response SLA, while enterprise plans feature 1 to 4-hour critical response." },
-      { q: "Do you take over existing installations?", a: "Yes, we can conduct a full system audit, repair underlying issues, and take over AMC for systems installed by third parties." }
-    ],
-    relatedSolutions: ["cctv", "network"]
-  },
+
   {
     slug: "smart",
     icon: ShieldCheck,
@@ -580,7 +552,68 @@ export const PROCESS = [
   { step: "02", title: "Design & Quote", desc: "Transparent BoQ with engineering drawings." },
   { step: "03", title: "Installation", desc: "Clean cabling, label-perfect racks, zero shortcuts." },
   { step: "04", title: "Training", desc: "Your team learns the system end-to-end." },
-  { step: "05", title: "Lifetime Support", desc: "AMC-backed care with 24×7 NOC monitoring." },
+  { step: "05", title: "Lifetime Support", desc: "Comprehensive support with 24×7 NOC monitoring." },
+];
+
+export const EXPERTISE = [
+  "End to End solution, Complete Engineering, Consultancy Design Installation testing & Commissioning & Maintenance services.",
+  "IP Based CCTV Design, Implementation, Operation & Maintenance.",
+  "Futuristic Products for Energy & Building Management.",
+  "Strategic Partner for Innovation Leader.",
+  "Strong Ecosystem of partners & Internal Sources.",
+  "Biometric, RFID, Face recognition & Physical Layer Security.",
+  "Customized solutions and Design for each Customer."
+];
+
+export const PARTNERS = [
+  { name: "eSSL", domain: "esslsecurity.com" },
+  { name: "Honeywell", domain: "honeywell.com" },
+  { name: "HIKVISION", domain: "hikvision.com" },
+  { name: "D-Link", domain: "dlink.com" },
+  { name: "Panasonic", domain: "panasonic.com" },
+  { name: "ZKTeco", domain: "zkteco.com" },
+  { name: "CP PLUS", domain: "cpplusworld.com" },
+  { name: "Godrej", domain: "godrej.com" },
+  { name: "NETGEAR", domain: "netgear.com" },
+  { name: "Yale", domain: "yalehome.com" },
+  { name: "BioMax", domain: "biomaxsecurity.com" },
+  { name: "Dahua", domain: "dahuasecurity.com" },
+  { name: "WD", domain: "westerndigital.com" },
+  { name: "Seagate", domain: "seagate.com" }
+];
+
+export const CLIENTS = [
+  { name: "Cipla", domain: "cipla.com" },
+  { name: "Aditya Birla Capital", domain: "adityabirlacapital.com" },
+  { name: "ICMR", domain: "icmr.nic.in" },
+  { name: "Kalyani", domain: "kalyanigroup.com" },
+  { name: "Bharati Hospital", domain: "bharatividyapeethhospital.com" },
+  { name: "Zuari Agro Chemicals", domain: "zuari.in" },
+  { name: "Esbee Realty", domain: "esbeerealty.com" },
+  { name: "La densitae", domain: "ladensitae.com" },
+  { name: "DYP", domain: "dypatil.edu" },
+  { name: "Cummins", domain: "cummins.com" },
+  { name: "SMC Super", domain: "" },
+  { name: "Privilege", domain: "" },
+  { name: "traveltime", domain: "traveltime.com" },
+  { name: "IMAX Multispeciality", domain: "imaxhospital.com" },
+  { name: "Silver Birch", domain: "silverbirch.co.in" },
+  { name: "Manikchand", domain: "manikchandgroup.com" },
+  { name: "Karma Realty", domain: "karmarealty.in" },
+  { name: "Garve Developers", domain: "garvedevelopers.com" },
+  { name: "Dodke Landmarks", domain: "dodkelandmarks.com" },
+  { name: "Bhandari Associates", domain: "bhandariassociates.co.in" },
+  { name: "PVR Projects Ltd", domain: "pvrcinemas.com" },
+  { name: "Sonai", domain: "sonaidairy.com" },
+  { name: "Skoda", domain: "skoda-auto.com" },
+  { name: "Honda", domain: "honda.com" },
+  { name: "Hyundai", domain: "hyundai.com" },
+  { name: "Mahindra", domain: "mahindra.com" },
+  { name: "Maruti Suzuki", domain: "marutisuzuki.com" },
+  { name: "Kia", domain: "kia.com" },
+  { name: "Tata", domain: "tatamotors.com" },
+  { name: "TVS", domain: "tvsmotor.com" },
+  { name: "Bajaj", domain: "bajajauto.com" }
 ];
 
 export const METRICS = [
@@ -595,12 +628,6 @@ export const BLOG = [
   { slug: "ai-cameras-2026", title: "How AI cameras are quietly replacing guard rooms in 2026", excerpt: "Edge analytics, smart zones and the new economics of surveillance.", date: "Jun 18, 2026", read: "6 min" },
   { slug: "amc-checklist", title: "The annual maintenance checklist every facility manager needs", excerpt: "A practical guide to keeping a 100+ camera deployment healthy.", date: "May 30, 2026", read: "4 min" },
   { slug: "biometric-vs-rfid", title: "Biometric vs RFID: choosing access control for modern offices", excerpt: "Cost, security, and the friction users will actually accept.", date: "May 12, 2026", read: "5 min" },
-];
-
-export const AMC_PLANS = [
-  { name: "Essential", price: "₹ 18,000", period: "/ year", desc: "For small offices & homes up to 16 cameras.", features: ["Quarterly preventive visits", "48-hour response SLA", "Remote monitoring & alerts", "Free firmware upgrades"] },
-  { name: "Business", price: "₹ 48,000", period: "/ year", popular: true, desc: "For multi-site businesses up to 64 cameras.", features: ["Monthly preventive visits", "12-hour response SLA", "Dedicated technician", "Quarterly health reports", "10% spare-parts discount"] },
-  { name: "Enterprise", price: "Custom", period: "", desc: "For campuses, factories and societies.", features: ["On-site stationed engineer", "1-hour response SLA", "24×7 NOC monitoring", "Quarterly business reviews", "Full inventory of spares"] },
 ];
 
 export const inr = (n: number) => `₹ ${n.toLocaleString("en-IN")}`;

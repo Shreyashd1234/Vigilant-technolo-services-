@@ -6,7 +6,7 @@ import { BLOG } from "@/lib/site-data";
 export const Route = createFileRoute("/blog")({
   head: () => ({ meta: [
     { title: "Insights — Vigilant Technologies" },
-    { name: "description", content: "Field notes from India's smart-security frontier — analytics, AMC, biometrics and beyond." },
+    { name: "description", content: "Field notes from India's smart-security frontier — analytics, biometrics and beyond." },
     { property: "og:title", content: "Insights — Vigilant Technologies" },
   ]}),
   component: BlogPage,

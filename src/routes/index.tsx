@@ -1,16 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { ArrowRight, Award, Cloud, Eye, ShieldCheck, Smartphone, Sparkles, Star, Users, Wrench, User } from "lucide-react";
 import { Btn, Section, SectionHeading, ArrowLink } from "@/components/site/Primitives";
 import { ProductCard } from "@/components/site/ProductCard";
-import { BRAND, INDUSTRIES, METRICS, PROCESS, PRODUCTS, SOLUTIONS, TESTIMONIALS } from "@/lib/site-data";
+import { BRAND, INDUSTRIES, METRICS, PROCESS, PRODUCTS, SOLUTIONS, TESTIMONIALS, EXPERTISE, PARTNERS, CLIENTS, PROJECTS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/hero-control-room.jpg";
+import officeExterior from "@/assets/generated/office_exterior_1784034617668.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Vigilant Technologies — Secure Every Corner" },
-      { name: "description", content: "Premium CCTV, IP cameras, biometric access, video door phones, networking and AMC services in Pune & across India." },
+      { name: "description", content: "Premium CCTV, IP cameras, biometric access, video door phones, and networking services in Pune & across India." },
       { property: "og:title", content: "Vigilant Technologies — Secure Every Corner" },
       { property: "og:description", content: "Protecting what matters through intelligent security." },
     ],
@@ -120,6 +122,27 @@ function HomePage() {
         </div>
       </section>
 
+      {/* EXPERTISE */}
+      <section className="container-x py-24 sm:py-32">
+        <div className="flex flex-col lg:flex-row gap-16 items-start">
+          <div className="lg:w-1/3">
+            <span className="text-xs uppercase tracking-widest text-muted-foreground">Our Expertise</span>
+            <h2 className="mt-4 text-3xl sm:text-4xl font-semibold tracking-tight">Top class engineers serve you the best security solutions.</h2>
+            <p className="mt-6 text-muted-foreground">We pride ourselves on technical excellence and deep integration capabilities across the entire security stack.</p>
+          </div>
+          <div className="lg:w-2/3 grid gap-4 sm:grid-cols-2">
+            {EXPERTISE.map((exp, i) => (
+              <div key={i} className="flex items-start gap-4 rounded-2xl border border-border bg-surface p-6 hover:bg-surface-elevated transition-colors">
+                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand/10 text-brand font-semibold text-sm">
+                  {i + 1}
+                </div>
+                <p className="text-sm font-medium leading-relaxed pt-1">{exp}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* SOLUTIONS */}
       <Section>
@@ -135,7 +158,7 @@ function HomePage() {
               <div className="absolute inset-x-0 bottom-0 p-7 flex flex-col justify-end h-full">
                 <s.icon className="h-6 w-6 text-white mb-4" strokeWidth={1.5} />
                 <h3 className="text-xl font-semibold text-white tracking-tight">{s.name}</h3>
-                <p className="mt-2 text-sm text-white/70 leading-relaxed translate-y-4 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">{s.desc}</p>
+                <p className="mt-2 text-sm text-white/70 line-clamp-2">{s.short}</p>
               </div>
             </Link>
           ))}
@@ -166,6 +189,31 @@ function HomePage() {
         </div>
       </section>
 
+      {/* PROJECTS */}
+      <Section>
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+          <SectionHeading eyebrow="Case Studies" title="Featured Projects" />
+        </div>
+        <div className="grid lg:grid-cols-2 gap-6">
+           {PROJECTS.map((proj) => (
+             <div key={proj.slug} className="group flex flex-col sm:flex-row rounded-3xl border border-border/60 bg-surface overflow-hidden hover:border-border transition-all">
+               <div className="sm:w-2/5 relative aspect-square sm:aspect-auto">
+                 <img src={proj.image} alt={proj.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                 <div className="absolute inset-0 bg-black/20" />
+               </div>
+               <div className="sm:w-3/5 p-8 flex flex-col justify-center">
+                 <div className="text-xs font-medium text-brand tracking-widest uppercase mb-3">{proj.type}</div>
+                 <h3 className="text-2xl font-semibold tracking-tight mb-2">{proj.name}</h3>
+                 <p className="text-sm text-muted-foreground mb-6 line-clamp-2">{proj.clientBackground}</p>
+                 <div className="text-sm border-t border-border/60 pt-4 mt-auto">
+                   <strong className="text-foreground/90 font-medium">Scope:</strong> <span className="text-muted-foreground">{proj.scope}</span>
+                 </div>
+               </div>
+             </div>
+           ))}
+        </div>
+      </Section>
+
       {/* PRODUCTS */}
       <Section>
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
@@ -188,6 +236,40 @@ function HomePage() {
                 <h3 className="mt-6 font-semibold">{p.title}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PARTNERS */}
+      <section className="bg-surface py-20">
+        <div className="container-x">
+          <div className="text-center mb-12 flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-foreground/90">
+              Strategic Partners
+            </h2>
+            <div className="h-1.5 w-24 bg-brand mt-4 rounded-full" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-0 border-t border-l border-border/60">
+            {PARTNERS.map((partner, i) => (
+              <LogoCard key={i} item={partner} type="partner" className="aspect-[4/3] w-full rounded-none border-b border-r border-border/60 shadow-none hover:shadow-none hover:border-border/60 bg-white" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CLIENTS */}
+      <section className="bg-surface py-20 pb-32">
+        <div className="container-x">
+          <div className="text-center mb-12 flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-foreground/90">
+              Our Clients
+            </h2>
+            <div className="h-1.5 w-24 bg-brand mt-4 rounded-full" />
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-0 border-t border-l border-border/60">
+            {CLIENTS.map((client, i) => (
+              <LogoCard key={i} item={client} type="client" className="aspect-[4/3] w-full rounded-none border-b border-r border-border/60 shadow-none hover:shadow-none hover:border-border/60 bg-white" />
             ))}
           </div>
         </div>
@@ -225,7 +307,7 @@ function HomePage() {
       {/* CTA */}
       <Section>
         <div className="surface-card overflow-hidden relative">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Modern office" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
+          <img src={officeExterior} alt="Modern office" loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-20" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/90 to-surface/50" />
           <div className="relative p-12 sm:p-16 lg:p-24">
             <div className="max-w-2xl">
@@ -244,5 +326,30 @@ function HomePage() {
         </div>
       </Section>
     </>
+  );
+}
+
+function LogoCard({ item, className, type }: { item: { name: string; domain: string }, className?: string, type: "partner" | "client" }) {
+  const [errorCount, setErrorCount] = useState(0);
+  const safeName = item.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
+  
+  // Try PNG first, if that fails try SVG, if that fails show text
+  const imgSrc = errorCount === 0 
+    ? `/logos/${type}_${safeName}.png` 
+    : `/logos/${type}_${safeName}.svg`;
+
+  return (
+    <div className={cn("flex items-center justify-center border border-border/60 shadow-sm transition-all group overflow-hidden relative bg-white p-4", className)}>
+      {errorCount < 2 ? (
+        <img 
+          src={imgSrc} 
+          alt={item.name}
+          className="max-h-12 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          onError={() => setErrorCount(c => c + 1)}
+        />
+      ) : (
+        <span className="font-bold text-sm text-foreground/80 truncate text-center w-full px-2">{item.name}</span>
+      )}
+    </div>
   );
 }

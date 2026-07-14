@@ -49,7 +49,7 @@ function ContactPage() {
               <div className="bg-red-500/10 border border-red-500/20 rounded-3xl p-8 flex flex-col gap-4">
                  <ShieldAlert className="h-8 w-8 text-red-500" />
                  <h4 className="font-semibold text-foreground">Emergency Support</h4>
-                 <p className="text-sm text-muted-foreground">For critical system failures or AMC clients requiring immediate NOC assistance.</p>
+                 <p className="text-sm text-muted-foreground">For critical system failures requiring immediate NOC assistance.</p>
                  <CallButton text="Call 24×7 NOC" className="mt-2 w-full bg-red-500 hover:bg-red-600 text-white focus-visible:ring-red-500" />
               </div>
               <div className="surface-card p-8 flex flex-col gap-4 border border-border/50">
@@ -62,16 +62,17 @@ function ContactPage() {
         </div>
 
         <aside className="space-y-4">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border/50 group bg-surface">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="Vigilant Office" loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1500ms] group-hover:scale-110 opacity-70" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-8 flex flex-col text-white">
-              <h3 className="text-xl font-semibold">{BRAND.name}</h3>
-              <p className="mt-2 text-sm text-white/80 leading-relaxed">{BRAND.address}</p>
-              <a href="#" className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest hover:text-brand transition-colors">
-                 <Navigation className="h-3.5 w-3.5" /> Get Directions
-              </a>
-            </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border/50 bg-surface">
+            <iframe 
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.0436043445!2d73.79292671512402!3d18.5246035532585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+               width="100%" 
+               height="100%" 
+               style={{ border: 0, filter: "grayscale(1) contrast(1.2) opacity(0.8)" }} 
+               allowFullScreen 
+               loading="lazy" 
+               referrerPolicy="no-referrer-when-downgrade"
+               className="absolute inset-0 h-full w-full pointer-events-none sm:pointer-events-auto"
+            />
           </div>
 
           <InfoCard icon={Phone} label="Sales & Inquiries" value={BRAND.phone} href={`tel:${BRAND.phone}`} />

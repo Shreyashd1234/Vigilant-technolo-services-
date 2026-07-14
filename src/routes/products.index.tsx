@@ -103,8 +103,8 @@ function ProductsPage() {
                </p>
                <Btn to="/contact" className="bg-white text-black hover:bg-white/90 px-8 py-6 text-lg">Talk to an Architect</Btn>
             </div>
-            <div className="relative aspect-square sm:aspect-video rounded-3xl overflow-hidden bg-surface-elevated p-12 flex flex-col justify-between">
-               <img src={featured.image} alt={featured.name} className="absolute -right-10 -bottom-10 w-3/4 object-contain opacity-50 mix-blend-screen" />
+            <div className="relative aspect-square sm:aspect-video rounded-3xl overflow-hidden bg-zinc-950/40 border border-white/10 p-12 flex flex-col justify-between">
+               <img src={featured.image} alt={featured.name} className="absolute -right-10 -bottom-10 w-3/4 object-contain opacity-50 mix-blend-plus-lighter" />
                <div className="relative z-10">
                   <span className="text-brand font-bold uppercase tracking-widest text-xs">Featured Hardware</span>
                   <h3 className="text-3xl font-semibold mt-2 text-white">{featured.name}</h3>

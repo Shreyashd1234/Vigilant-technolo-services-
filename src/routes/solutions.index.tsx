@@ -5,7 +5,7 @@ import { SOLUTIONS, INDUSTRIES } from "@/lib/site-data";
 export const Route = createFileRoute("/solutions/")({
   head: () => ({ meta: [
     { title: "Solutions — Vigilant Technologies" },
-    { name: "description", content: "End-to-end security solutions: CCTV, IP cameras, biometric, access control, networking, AMC and smart security." },
+    { name: "description", content: "End-to-end security solutions: CCTV, IP cameras, biometric, access control, networking, and smart security." },
     { property: "og:title", content: "Solutions — Vigilant Technologies" },
   ]}),
   component: SolutionsPage,

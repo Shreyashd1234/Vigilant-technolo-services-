@@ -17,7 +17,7 @@ function LoginPage() {
           <ShieldCheck className="h-8 w-8" />
           <div>
             <h2 className="font-display text-3xl font-semibold tracking-tight leading-tight">Your security, in one place.</h2>
-            <p className="mt-3 text-sm text-muted-foreground">Track installations, manage AMCs, download invoices and monitor your sites from a single dashboard.</p>
+            <p className="mt-3 text-sm text-muted-foreground">Track installations, download invoices and monitor your sites from a single dashboard.</p>
           </div>
         </div>
 
