@@ -58,7 +58,6 @@ export const BRAND = {
 export const NAV = [
   { label: "Home", to: "/" },
   { label: "Solutions", to: "/solutions" },
-  { label: "Industries", to: "/industries" },
   { label: "Products", to: "/products" },
   { label: "Projects", to: "/projects" },
   { label: "Gallery", to: "/gallery" },
