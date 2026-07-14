@@ -36,14 +36,14 @@ function SolutionsPage() {
         <SectionHeading eyebrow="Industries" title="Built for every environment." />
         <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-px bg-background/20 border border-background/20 rounded-3xl overflow-hidden">
           {INDUSTRIES.map((i) => (
-            <div key={i.name} className="group relative aspect-square sm:aspect-[3/4] overflow-hidden bg-foreground">
+            <Link key={i.slug} to="/industries/$slug" params={{ slug: i.slug }} className="group relative aspect-square sm:aspect-[3/4] overflow-hidden bg-foreground block">
               <img src={i.image} alt={i.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover opacity-40 transition-all duration-700 group-hover:scale-105 group-hover:opacity-80" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end">
                 <i.icon className="h-6 w-6 text-white mb-4" strokeWidth={1.5} />
                 <div className="text-lg font-medium text-white">{i.name}</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
         <div className="mt-16 flex justify-center"><Btn to="/contact">Discuss Your Project</Btn></div>

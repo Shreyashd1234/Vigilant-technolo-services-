@@ -14,7 +14,6 @@ import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CheckoutRouteImport } from './routes/checkout'
@@ -27,7 +26,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as SolutionsIndexRouteImport } from './routes/solutions.index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
-import { Route as IndustriesIndexRouteImport } from './routes/industries.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as SolutionsSlugRouteImport } from './routes/solutions.$slug'
 import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
@@ -72,11 +70,6 @@ const ProductsRoute = ProductsRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndustriesRoute = IndustriesRouteImport.update({
-  id: '/industries',
-  path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GalleryRoute = GalleryRouteImport.update({
@@ -138,11 +131,6 @@ const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ProductsRoute,
-} as any)
-const IndustriesIndexRoute = IndustriesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => IndustriesRoute,
 } as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
@@ -255,7 +243,6 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
-  '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
   '/products': typeof ProductsRouteWithChildren
   '/projects': typeof ProjectsRouteWithChildren
@@ -281,7 +268,6 @@ export interface FileRoutesByFullPath {
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
-  '/industries/': typeof IndustriesIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
@@ -317,7 +303,6 @@ export interface FileRoutesByTo {
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin': typeof AdminIndexRoute
-  '/industries': typeof IndustriesIndexRoute
   '/products': typeof ProductsIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/solutions': typeof SolutionsIndexRoute
@@ -333,7 +318,6 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
-  '/industries': typeof IndustriesRouteWithChildren
   '/login': typeof LoginRoute
   '/products': typeof ProductsRouteWithChildren
   '/projects': typeof ProjectsRouteWithChildren
@@ -359,7 +343,6 @@ export interface FileRoutesById {
   '/projects/$slug': typeof ProjectsSlugRoute
   '/solutions/$slug': typeof SolutionsSlugRoute
   '/admin/': typeof AdminIndexRoute
-  '/industries/': typeof IndustriesIndexRoute
   '/products/': typeof ProductsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/solutions/': typeof SolutionsIndexRoute
@@ -376,7 +359,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/gallery'
-    | '/industries'
     | '/login'
     | '/products'
     | '/projects'
@@ -402,7 +384,6 @@ export interface FileRouteTypes {
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/admin/'
-    | '/industries/'
     | '/products/'
     | '/projects/'
     | '/solutions/'
@@ -438,7 +419,6 @@ export interface FileRouteTypes {
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/admin'
-    | '/industries'
     | '/products'
     | '/projects'
     | '/solutions'
@@ -453,7 +433,6 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/gallery'
-    | '/industries'
     | '/login'
     | '/products'
     | '/projects'
@@ -479,7 +458,6 @@ export interface FileRouteTypes {
     | '/projects/$slug'
     | '/solutions/$slug'
     | '/admin/'
-    | '/industries/'
     | '/products/'
     | '/projects/'
     | '/solutions/'
@@ -495,7 +473,6 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
-  IndustriesRoute: typeof IndustriesRouteWithChildren
   LoginRoute: typeof LoginRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ProjectsRoute: typeof ProjectsRouteWithChildren
@@ -538,13 +515,6 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/industries': {
-      id: '/industries'
-      path: '/industries'
-      fullPath: '/industries'
-      preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gallery': {
@@ -630,13 +600,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/products/'
       preLoaderRoute: typeof ProductsIndexRouteImport
       parentRoute: typeof ProductsRoute
-    }
-    '/industries/': {
-      id: '/industries/'
-      path: '/'
-      fullPath: '/industries/'
-      preLoaderRoute: typeof IndustriesIndexRouteImport
-      parentRoute: typeof IndustriesRoute
     }
     '/admin/': {
       id: '/admin/'
@@ -821,20 +784,6 @@ const AdminRouteChildren: AdminRouteChildren = {
 
 const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
-interface IndustriesRouteChildren {
-  IndustriesSlugRoute: typeof IndustriesSlugRoute
-  IndustriesIndexRoute: typeof IndustriesIndexRoute
-}
-
-const IndustriesRouteChildren: IndustriesRouteChildren = {
-  IndustriesSlugRoute: IndustriesSlugRoute,
-  IndustriesIndexRoute: IndustriesIndexRoute,
-}
-
-const IndustriesRouteWithChildren = IndustriesRoute._addFileChildren(
-  IndustriesRouteChildren,
-)
-
 interface ProductsRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   ProductsIndexRoute: typeof ProductsIndexRoute
@@ -887,7 +836,6 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
-  IndustriesRoute: IndustriesRouteWithChildren,
   LoginRoute: LoginRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ProjectsRoute: ProjectsRouteWithChildren,
