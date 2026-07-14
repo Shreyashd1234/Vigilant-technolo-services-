@@ -27,9 +27,15 @@ export const BRAND = {
   short: "Vigilant",
   tagline: "Protecting What Matters Through Intelligent Security.",
   city: "Pune",
-  phone: "08087279615",
-  email: "hello@vigilant.tech",
-  address: "HN 48/1, Pitrukrupa Building, near Datta Mandir, Satara Road, Dhankawadi, Pune - 411043",
+  phone: "+91- 8087279615",
+  email: "info@vigilanttechno.com",
+  emails: {
+    support: "support@vigilanttechno.com",
+    sales: "sales@vigilanttechno.com",
+    info: "info@vigilanttechno.com"
+  },
+  website: "www.vigilanttechno.com",
+  address: "S. No. 51, Office No. 105, Dwarika Dham, Near ISCON Temple, Katraj-Kondhawa Road, Tilekar Nagar, Pune 411048",
   rating: "4.9★",
   established: "2013",
 };

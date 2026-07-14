@@ -34,8 +34,10 @@ export function Footer() {
             <h4 className="text-xs uppercase tracking-widest text-muted-foreground">Contact</h4>
             <ul className="mt-5 space-y-3 text-sm">
               <li><a href={`tel:${BRAND.phone}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.phone}</a></li>
-              <li><a href={`mailto:${BRAND.email}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.email}</a></li>
-              <li className="text-muted-foreground">{BRAND.city}</li>
+              <li><a href={`mailto:${BRAND.emails.info}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.emails.info}</a></li>
+              <li><a href={`mailto:${BRAND.emails.sales}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.emails.sales}</a></li>
+              <li><a href={`mailto:${BRAND.emails.support}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.emails.support}</a></li>
+              <li><a href={`https://${BRAND.website}`} className="hover:text-foreground text-muted-foreground link-underline">{BRAND.website}</a></li>
             </ul>
           </div>
 

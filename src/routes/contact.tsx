@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { Clock, MapPin, Navigation, Phone, Star, ShieldAlert } from "lucide-react";
+import { Clock, MapPin, Navigation, Phone, Star, ShieldAlert, Mail, Globe } from "lucide-react";
 import { Btn, Section, SectionHeading } from "@/components/site/Primitives";
 import { BRAND } from "@/lib/site-data";
 import { ContextualWhatsApp, CallButton } from "@/components/site/CTAs";
@@ -75,7 +75,14 @@ function ContactPage() {
             />
           </div>
 
-          <InfoCard icon={Phone} label="Sales & Inquiries" value={BRAND.phone} href={`tel:${BRAND.phone}`} />
+          <div className="space-y-3">
+             <InfoCard icon={MapPin} label="Office Address" value={BRAND.address} />
+             <InfoCard icon={Phone} label="Call Us On" value={BRAND.phone} href={`tel:${BRAND.phone}`} />
+             <InfoCard icon={Mail} label="Support Queries" value={BRAND.emails.support} href={`mailto:${BRAND.emails.support}`} />
+             <InfoCard icon={Mail} label="Project Queries" value={BRAND.emails.sales} href={`mailto:${BRAND.emails.sales}`} />
+             <InfoCard icon={Mail} label="Business Queries" value={BRAND.emails.info} href={`mailto:${BRAND.emails.info}`} />
+             <InfoCard icon={Globe} label="Website" value={BRAND.website} href={`https://${BRAND.website}`} />
+          </div>
           
           <div className="surface-card p-6 border border-border/50">
              <div className="flex items-center gap-4 mb-6">
@@ -114,7 +121,7 @@ function InfoCard({ icon: Icon, label, value, href }: { icon: React.ComponentTyp
       <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-foreground text-background"><Icon className="h-4 w-4" /></div>
       <div className="min-w-0">
         <div className="text-xs uppercase tracking-widest text-muted-foreground">{label}</div>
-        <div className="mt-1 text-sm font-medium truncate">{value}</div>
+        <div className="mt-1 text-sm font-medium whitespace-pre-wrap">{value}</div>
       </div>
     </div>
   );
