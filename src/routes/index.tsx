@@ -189,30 +189,6 @@ function HomePage() {
         </div>
       </section>
 
-      {/* PROJECTS */}
-      <Section>
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-          <SectionHeading eyebrow="Case Studies" title="Featured Projects" />
-        </div>
-        <div className="grid lg:grid-cols-2 gap-6">
-           {PROJECTS.map((proj) => (
-             <div key={proj.slug} className="group flex flex-col sm:flex-row rounded-3xl border border-border/60 bg-surface overflow-hidden hover:border-border transition-all">
-               <div className="sm:w-2/5 relative aspect-square sm:aspect-auto">
-                 <img src={proj.image} alt={proj.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                 <div className="absolute inset-0 bg-black/20" />
-               </div>
-               <div className="sm:w-3/5 p-8 flex flex-col justify-center">
-                 <div className="text-xs font-medium text-brand tracking-widest uppercase mb-3">{proj.type}</div>
-                 <h3 className="text-2xl font-semibold tracking-tight mb-2">{proj.name}</h3>
-                 <p className="text-sm text-muted-foreground mb-6 line-clamp-2">{proj.clientBackground}</p>
-                 <div className="text-sm border-t border-border/60 pt-4 mt-auto">
-                   <strong className="text-foreground/90 font-medium">Scope:</strong> <span className="text-muted-foreground">{proj.scope}</span>
-                 </div>
-               </div>
-             </div>
-           ))}
-        </div>
-      </Section>
 
       {/* PRODUCTS */}
       <Section>
