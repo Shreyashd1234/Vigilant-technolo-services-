@@ -345,7 +345,7 @@ function LogoCard({ item, className, type }: { item: { name: string; domain?: st
         <img 
           src={imgSrc} 
           alt={item.name}
-          className="max-h-full max-w-full object-contain grayscale opacity-60 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 mix-blend-multiply"
+          className="max-h-full max-w-full object-contain transition-all duration-500 group-hover:scale-105 mix-blend-multiply"
           onError={() => setErrorCount(c => c + 1)}
           loading="lazy"
         />
