@@ -242,34 +242,34 @@ function HomePage() {
       </section>
 
       {/* PARTNERS */}
-      <section className="bg-surface py-20">
+      <section className="bg-white py-24">
         <div className="container-x">
-          <div className="text-center mb-12 flex flex-col items-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-foreground/90">
+          <div className="text-center mb-16 flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-black/90">
               Strategic Partners
             </h2>
             <div className="h-1.5 w-24 bg-brand mt-4 rounded-full" />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-0 border-t border-l border-border/60">
+          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16 max-w-5xl mx-auto">
             {PARTNERS.map((partner, i) => (
-              <LogoCard key={i} item={partner} type="partner" className="aspect-[4/3] w-full rounded-none border-b border-r border-border/60 shadow-none hover:shadow-none hover:border-border/60 bg-white" />
+              <LogoCard key={i} item={partner} type="partner" className="w-28 sm:w-36 h-20" />
             ))}
           </div>
         </div>
       </section>
 
       {/* CLIENTS */}
-      <section className="bg-surface py-20 pb-32">
+      <section className="bg-white py-20 pb-32">
         <div className="container-x">
-          <div className="text-center mb-12 flex flex-col items-center">
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-foreground/90">
+          <div className="text-center mb-16 flex flex-col items-center">
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide uppercase text-black/90">
               Our Clients
             </h2>
             <div className="h-1.5 w-24 bg-brand mt-4 rounded-full" />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-0 border-t border-l border-border/60">
+          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-12 lg:gap-16">
             {CLIENTS.map((client, i) => (
-              <LogoCard key={i} item={client} type="client" className="aspect-[4/3] w-full rounded-none border-b border-r border-border/60 shadow-none hover:shadow-none hover:border-border/60 bg-white" />
+              <LogoCard key={i} item={client} type="client" className="w-24 sm:w-32 h-16 sm:h-20" />
             ))}
           </div>
         </div>
@@ -329,26 +329,28 @@ function HomePage() {
   );
 }
 
-function LogoCard({ item, className, type }: { item: { name: string; domain: string }, className?: string, type: "partner" | "client" }) {
+function LogoCard({ item, className, type }: { item: { name: string; domain?: string; logo?: string }, className?: string, type: "partner" | "client" }) {
   const [errorCount, setErrorCount] = useState(0);
   const safeName = item.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase();
   
-  // Try PNG first, if that fails try SVG, if that fails show text
-  const imgSrc = errorCount === 0 
-    ? `/logos/${type}_${safeName}.png` 
-    : `/logos/${type}_${safeName}.svg`;
+  // Try custom logo first, then PNG, if that fails try SVG, if that fails show text
+  let imgSrc = item.logo ? encodeURI(item.logo) : `/logos/${type}_${safeName}.png`;
+  if (errorCount === 1 && !item.logo) {
+    imgSrc = `/logos/${type}_${safeName}.svg`;
+  }
 
   return (
-    <div className={cn("flex items-center justify-center border border-border/60 shadow-sm transition-all group overflow-hidden relative bg-white p-4", className)}>
-      {errorCount < 2 ? (
+    <div className={cn("flex items-center justify-center group relative transition-all", className)} title={item.name}>
+      {errorCount < (item.logo ? 1 : 2) ? (
         <img 
           src={imgSrc} 
           alt={item.name}
-          className="max-h-12 max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="max-h-full max-w-full object-contain grayscale opacity-60 transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 mix-blend-multiply"
           onError={() => setErrorCount(c => c + 1)}
+          loading="lazy"
         />
       ) : (
-        <span className="font-bold text-sm text-foreground/80 truncate text-center w-full px-2">{item.name}</span>
+        <span className="font-bold text-sm text-black/60 truncate text-center w-full px-2">{item.name}</span>
       )}
     </div>
   );
